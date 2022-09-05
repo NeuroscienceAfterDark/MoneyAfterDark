@@ -1,1 +1,1 @@
-pip install MoneyAfterDark
+pip installation Coming Soon
