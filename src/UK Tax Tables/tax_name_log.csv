@@ -1,0 +1,11 @@
+tax name,filename,2019/2020,2020/2021,2021/2022,2022/2023
+income tax,\\thresholds_income_tax.csv,\\2019-2020,\\2020-2021,\\2021-2022,\\2022-2023
+employee ni,\\thresholds_employee_national_insurance.csv,\\2019-2020,\\2020-2021,\\2021-2022,\\2022-2023
+corporate ni,\\thresholds_corporate_national_insurance.csv,\\2019-2020,\\2020-2021,\\2021-2022,\\2022-2023
+dividend rates,\\rates_dividend.csv,\\2019-2020,\\2020-2021,\\2021-2022,\\2022-2023
+student loans,\\thresholds_student_loans.csv,\\2019-2020,\\2020-2021,\\2021-2022,\\2022-2023
+corporation tax,\\thresholds_corporation_tax.csv,\\2019-2020,\\2020-2021,\\2021-2022,\\2022-2023
+employee ni bands,\\bands_employee_ni.csv,\\2019-2020,\\2020-2021,\\2021-2022,\\2022-2023
+corporate ni bands,\\bands_corporate_ni.csv,\\2019-2020,\\2020-2021,\\2021-2022,\\2022-2023
+high income threshold,\\single_threshold_allowance_change.csv,\\2019-2020,\\2020-2021,\\2021-2022,\\2022-2023
+dividend tax free allowance,\\single_threshold_dividends_tax_free.csv,\\2019-2020,\\2020-2021,\\2021-2022,\\2022-2023
