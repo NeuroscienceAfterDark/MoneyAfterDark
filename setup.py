@@ -1,9 +1,8 @@
-from distutils.core import setup
+from setuptools import setup, find_packages
 setup(
 name = 'MoneyAfterDark',
-packages = 'MoneyAfterDark',
+packages = find_packages(exclude=['test']),
 version = '1.0.6',
-license = 'MIT',
 author = 'NeuroscienceAfterDark',
 author_email = 'neuroscience@sigmund.science',
 description = 'Business, Finance and Universal Tax Tools. UK Specific Tax Tools also Included',
