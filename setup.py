@@ -1,12 +1,14 @@
-import setuptools
-setuptools.setup(
+from distutils.core import setup
+setup(
 name = 'MoneyAfterDark',
-version = '1.0.5',
-author = 'MoneyAfterDark',
+packages = 'MoneyAfterDark',
+version = '1.0.6',
+license = 'MIT',
+author = 'NeuroscienceAfterDark',
 author_email = 'neuroscience@sigmund.science',
 description = 'Business, Finance and Universal Tax Tools. UK Specific Tax Tools also Included',
 url = 'https://github.com/NeuroscienceAfterDark/MoneyAfterDark',
-download_url = 'https://github.com/NeuroscienceAfterDark/MoneyAfterDark/archive/refs/tags/1.0.5.tar.gz',
+download_url = 'https://github.com/NeuroscienceAfterDark/MoneyAfterDark/archive/refs/tags/1.0.6.tar.gz',
 install_requires=['os'
                   'pandas',
                   'numpy',],
