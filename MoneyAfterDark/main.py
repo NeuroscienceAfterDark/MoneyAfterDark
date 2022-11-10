@@ -1,5 +1,9 @@
-def BusinessTools():
-    import pandas as pd
+import os
+import pandas as pd
+import numpy as np
+import plotly.graph_objects as go
+import datetime as dt
+class BusinessTools():
     def create_date_range(first_date,last_date="today"):
         dates = pd.date_range(first_date,pd.to_datetime("today"))
         date_range = pd.DataFrame(dates)
@@ -12,10 +16,11 @@ def BusinessTools():
         date_range['Weekday'] = date_range.index.dayofweek
         return date_range
         
-    def set_index_dates(df:pd.DataFrame,date_column_name='Date'):
-        df[date_column_name] = pd.to_datetime(df[date_column_name], dayfirst = True)
-        df.sort_values(by=date_column_name,inplace=True)
-        df.set_index(date_column_name,inplace=True)
+    def set_index_dates(df:pd.DataFrame,date_name='Date'):
+        df.columns= [column.title() for column in df.columns]
+        df[date_name] = pd.to_datetime(df[date_name], dayfirst = True)
+        df.sort_values(by=date_name,inplace=True)
+        df.set_index(date_name,inplace=True)
         return df
 
     def filter_columns(data:pd.DataFrame,column_names=['Type','Name','Category','Amount','Description']):
@@ -37,19 +42,50 @@ def BusinessTools():
         end_date = end_year_str + end_date_str
         tax_year_dates = (data.index > start_date) & (data.index <= end_date)
         return data[tax_year_dates]
+    
+    def cash_cumulate(df:pd.DataFrame,gross_profit=True,expenditure=True,revenue=True,profit=True,gross_return=True):
+        '''
+        Requires Columns Named:
+            'Gross Profit'
+            'Cumulative Expenditure'
+            'Cumulative Revenue'
+            'Cumulative Profit'
+            'Gross Return (%)'
+        '''
+        if gross_profit:
+            df["Gross Profit"] = df["Revenue"] - df["Expenditure"]
+        if expenditure:
+            df["Cumulative Expenditure"] = df["Expenditure"].cumsum()
+        if revenue:
+            df["Cumulative Revenue"] = df["Revenue"].cumsum()
+        if profit:
+            df["Cumulative Profit"] = df["Cumulative Revenue"] - df["Cumulative Expenditure"]
+        if gross_return:
+            df["Gross Return (%)"] = df["Cumulative Profit"]/df["Cumulative Expenditure"] * 100
+            df["Gross Return (%)"] = df["Gross Return (%)"].fillna(0)
+        return df
 
-    def expenses(data:pd.DataFrame,income_categories=['Incoming','Incoming Investment','Payment']):
-        total = data[~data['Category'].isin(income_categories)]['Amount'].sum()
-        return abs(total)
+        def expenses(data:pd.DataFrame,income_categories=['Incoming','Incoming Investment','Payment']):
+            total = data[~data['Category'].isin(income_categories)]['Amount'].sum()
+            return abs(total)
 
-    def turnover(data:pd.DataFrame,turnover_categories=['Incoming']):
-        total = data[data['Category'].isin(turnover_categories)]['Amount'].sum()
-        return total
+        def turnover(data:pd.DataFrame,turnover_categories=['Incoming']):
+            total = data[data['Category'].isin(turnover_categories)]['Amount'].sum()
+            return total
+    
+class BusinessTools_dev():
+    def plotly_line(df:pd.DataFrame,columns,colors=[]):
+        fig = go.Figure()
+        for i in columns:
+            fig.add_trace(go.Scatter(x=df.index, y=df[i],
+                                     mode='lines',
+                                     name=i,
+                                     marker_color=colors[columns.index(i)],
+                                    )
+                         )
+        fig.show()
 
-def TaxTools():
-    import os
-    import pandas as pd
-    import numpy as np
+class TaxTools():
     def get_csv_for_dataframe(tax_name,tax_year='2021/2022'):
         '''options for UK tax_name
                 'income tax'
