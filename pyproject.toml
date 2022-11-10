@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "MoneyAfterDark"
+version = "1.0.9"
+authors = [
+  { name="NeuroscienceAfterDark", email="neuroscience@sigmund.science" },
+]
+description = "Business and Tax Tools"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/NeuroscienceAfterDark/MoneyAfterDark"
+"Bug Tracker" = https://github.com/NeuroscienceAfterDark/MoneyAfterDark/issues"
